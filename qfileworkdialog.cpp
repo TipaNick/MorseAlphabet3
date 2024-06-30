@@ -1,7 +1,8 @@
 #include "qfileworkdialog.h"
 
 QFileWorkDialog::QFileWorkDialog(QObject *parent)
-    : QObject{parent} {
+    : QObject{parent}
+{
 
 }
 

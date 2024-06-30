@@ -117,14 +117,14 @@ QString QMorseAlphabetLogic::fromMorse(QString message)
     QString result;
     QString symbol;
     // Проверяем все символы строки
-    for(int i = 0; i < message.size(); i++){
+    for(int i = 0; i < message.size(); i++) {
         //Если пробел, преобразуем символ в букву и записываем в результат
-        if(message.at(i) == ' '){
+        if(message.at(i) == ' ') {
             result += fromMorseMap.value(symbol);
             symbol = "";
-            if(i!=message.size()-1){
+            if(i!=message.size()-1) {
                 //Если за пробелом следует пробел, записываем пробел в результат
-                if(message.at(i+1) == ' '){
+                if(message.at(i+1) == ' ') {
                     i+=1;
                     result += ' ';
                 }
@@ -136,6 +136,7 @@ QString QMorseAlphabetLogic::fromMorse(QString message)
     }
     if(symbol != "")
         result += fromMorseMap.value(symbol);
+
     return result;
 }
 
@@ -143,9 +144,10 @@ QString QMorseAlphabetLogic::fromMorse(QString message)
 QString QMorseAlphabetLogic::toMorse(QString message)
 {
     QString result;
-    for (int i = 0; i < message.size(); i++){
-        if(message.toUpper().at(i) != ' '){
-            result += toMorseMap.value(message.toUpper().at(i)) + " ";
+    message = message.toUpper();
+    for (int i = 0; i < message.size(); i++) {
+        if(message.at(i) != ' ') {
+            result += toMorseMap.value(message.at(i)) + " ";
         } else {
             result += "  ";
         }
