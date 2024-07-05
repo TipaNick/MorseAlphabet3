@@ -1,27 +1,27 @@
-#include "qfileworkdialog.h"
+#include "mtfileworkdialog.h"
 
-QFileWorkDialog::QFileWorkDialog(QObject *parent)
+MTFileWorkDialog::MTFileWorkDialog(QObject *parent)
     : QObject{parent}
 {
 
 }
 
 //Функция сохранения файла
-void QFileWorkDialog::qSaveFile(QString path, QString outputText)
+void MTFileWorkDialog::saveFile(QString path, QString outputText)
 {
     QFile file(path);
-    if(file.open(QIODevice::WriteOnly)) {
+    if (file.open(QIODevice::WriteOnly)) {
         file.write(outputText.toUtf8());
         file.close();
     }
 }
 
 //Функция загрузки файла
-QString QFileWorkDialog::qLoadFile(QString path)
+QString MTFileWorkDialog::loadFile(QString path)
 {
-    QString result;
+    QString result = "";
     QFile file(path);
-    if(file.open(QIODevice::ReadOnly)) {
+    if (file.open(QIODevice::ReadOnly)) {
         result = file.readAll();
         file.close();
     }

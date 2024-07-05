@@ -13,26 +13,28 @@ Window {
     visible: true
     title: qsTr("Morse translate")
 
-    QMorseAlphabetLogic {
+    MTMorseAlphabetLogic {
         id: morse
     }
 
-    QFileWorkDialog {
-        id: filework
+    MTFileWorkDialog {
+        id: fileWorkDialog
     }
 
     FileDialog {
         id: saveFileDialog
+
         fileMode: FileDialog.SaveFile
         nameFilters: ["Text files (*.txt)"]
-        onAccepted: filework.qSaveFile(selectedFile.toString().slice(8), outputText.text)
+        onAccepted: fileWorkDialog.saveFile(selectedFile.toString().slice(8), outputText.currentText)
     }
 
     FileDialog {
         id: loadFileDialog
+
         fileMode: FileDialog.OpenFile
         nameFilters: ["Text files (*.txt)"]
-        onAccepted: inputText.text = filework.qLoadFile(selectedFile.toString().slice(8))
+        onAccepted: inputText.currentText = fileWorkDialog.loadFile(selectedFile.toString().slice(8))
     }
 
     Grid {
@@ -41,54 +43,28 @@ Window {
         rowSpacing: 15
         horizontalItemAlignment: Grid.AlignHCenter
 
-        Column {
-            Text {
-                text: qsTr("Ввод значения")
-                font { pointSize: 18; bold: true }
-            }
-            Rectangle {
-                border.color: "#000000"
-                border.width: 1
-                width: root.width/2
-                height: 150
+        MTTextField {
+            id: inputText
 
-                TextEdit {
-                    id: inputText
-                    width: root.width/2
-                    height: 150
-                    font.pointSize: 16
-                    wrapMode: TextEdit.Wrap
-                    selectByMouse: true
-                    onTextChanged: outputText.text = morse.qAutoTranslate(inputText.text)
-                }
-            }
+            header: "Ввод значения"
+            textFieldWidth: root.width / 2
+            isReadOnly: false
+            onTextChanged: outputText.currentText = morse.autoTranslate(currentText)
         }
 
-        Column {
-            Text {
-                text: qsTr("Вывод значения")
-                font { pointSize: 18; bold: true }
-            }
-            Rectangle {
-                border.color: "#000000"
-                border.width: 1
-                width: root.width/2
-                height: 150
+        MTTextField {
+            id: outputText
 
-                TextEdit {
-                    id: outputText
-                    width: root.width/2
-                    height: 150
-                    font.pointSize: 16
-                    wrapMode: TextEdit.Wrap
-                }
-            }
+            header: "Вывод значения"
+            textFieldWidth: root.width / 2
+            isReadOnly: true
         }
 
         Button {
             width: 150
             height: 50
             text: qsTr("Загрузить")
+
             onClicked: loadFileDialog.open()
         }
 
@@ -96,6 +72,7 @@ Window {
             width: 150
             height: 50
             text: qsTr("Сохранить")
+
             onClicked: saveFileDialog.open()
         }
 

@@ -6,8 +6,8 @@ QT += quick
 
 SOURCES += \
         main.cpp \
-        qfileworkdialog.cpp \
-        qmorsealphabetlogic.cpp
+        mtfileworkdialog.cpp \
+        mtmorsealphabetlogic.cpp
 
 RESOURCES += qml.qrc
 
@@ -23,5 +23,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    qfileworkdialog.h \
-    qmorsealphabetlogic.h
+    mtfileworkdialog.h \
+    mtmorsealphabetlogic.h

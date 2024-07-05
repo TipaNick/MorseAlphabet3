@@ -2,8 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include "qmorsealphabetlogic.h"
-#include "qfileworkdialog.h"
+#include "mtmorsealphabetlogic.h"
+#include "mtfileworkdialog.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType< QMorseAlphabetLogic >("Morse", 1, 0, "QMorseAlphabetLogic");
-    qmlRegisterType< QFileWorkDialog >("FileWork", 1, 0, "QFileWorkDialog");
+    qmlRegisterType<MTMorseAlphabetLogic>("Morse", 1, 0, "MTMorseAlphabetLogic");
+    qmlRegisterType<MTFileWorkDialog>("FileWork", 1, 0, "MTFileWorkDialog");
 
     QQmlApplicationEngine engine;
 
